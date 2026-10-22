@@ -470,7 +470,8 @@ def _loop():
         except Exception as e:
             print("automation lỗi:", e)
 
+automation.run_scheduled()
+threading.Thread(target=_loop, daemon=True).start()
+
 if __name__ == "__main__":
-    automation.run_scheduled()
-    threading.Thread(target=_loop, daemon=True).start()
-    app.run(debug=False, port=5000)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
